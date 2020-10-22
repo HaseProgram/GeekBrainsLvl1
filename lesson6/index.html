@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      font-size: 20px;
+      margin-bottom: 20px;
+      max-width: 200px;
+    }
+
+    main * {
+      display: block;
+    }
+
+    #btnclick {
+      padding: 10px;
+    }
+
+    #block {
+      padding: 50px 0;
+      border: 1px solid black;
+    }
+
+    #outer {
+      background: #ff0000;
+      padding: 30px;
+    }
+    #outer span {
+        background: #fff;
+        color: #000;
+      }
+  </style>
+</head>
+<body>
+  <button id="btnclcik">Click on button</button>
+  <div id="block" onmouseover="onBlockHover()">Hover on block</div>
+  <a href="/" id="aclick" onclick="onLinkClick(event)">Click on link</a>
+  <form action="#">
+    <input value="Hello" />
+  </form>
+
+  <div id="outer">
+    <span>Click me</span>
+  </div>
+
+  <script>
+    function onBtnClick (a, b) {
+      alert('Hello')
+      console.log(a)
+      console.log(b)
+    }
+
+    function onBlockHover () {
+      console.log('Hovered!!!')
+    }
+
+    function onLinkClick () {
+      event.preventDefault()
+      console.log('Clicked!!!')
+    }
+
+    const myBtn = document.querySelector('#btnclcik')
+    myBtn.addEventListener('click', function () {
+      console.log(event)
+      console.log(this)
+    })
+    myBtn.addEventListener('click', function () {
+      console.log('Another listener!!!')
+    })
+
+
+    const outer = document.querySelector('#outer')
+    outer.addEventListener('click', function () {
+      console.log('clicked!')
+      console.log(event.target)
+    })
+
+    const span = outer.querySelector('span')
+    span.addEventListener('click', function () {
+      console.log(event.target)
+      event.stopPropagation()
+    })
+  </script>
+</body>
+</html>
